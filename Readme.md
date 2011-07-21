@@ -17,4 +17,4 @@ bundle install
 ruby sprinklers_app.rb
 ```
 
-## Aruino App
+## Adruino App
