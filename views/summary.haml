@@ -1,0 +1,9 @@
+%ul
+  - @sprinkler_system.stations.each do |station|
+    %li
+      - if station.on?
+        %a{:href => "/sprinkler/#{station.name}/off"} 
+          = "Station #{station.name} - On" 
+      - else
+        %a{:href => "/sprinkler/#{station.name}/on"} 
+          = "Station #{station.name} - Off" 

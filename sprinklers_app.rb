@@ -1,7 +1,9 @@
 require 'rubygems'
 require 'sinatra/base'
+require 'haml'
 require './lib/sprinkler_system'
 require './lib/sprinkler_system_builder'
+require './lib/serial_port_control'
 
 class SprinklersApp < Sinatra::Base
 
@@ -9,10 +11,11 @@ class SprinklersApp < Sinatra::Base
     super
 
     builder = SprinklerSystemBuilder.new
-    builder.add_station('1')
-    builder.add_station('2')
+    8.times { |n| builder.add_station((n+1).to_s) }
 
     @sprinkler_system = builder.sprinkler_system()
+
+    SerialPortControl.instance.connect()
   end
 
   set :static, true
@@ -21,12 +24,17 @@ class SprinklersApp < Sinatra::Base
   get '/sprinkler/:sprinkler/on' do
     @sprinkler_system.disable_all
     @sprinkler_system.enable(params[:sprinkler])
-    "done."
+    haml :summary
+  end
+
+  get '/sprinkler/:sprinkler/off' do
+    @sprinkler_system.disable(params[:sprinkler])
+    haml :summary
   end
 
   get '/sprinklers/off' do
     @sprinkler_system.disable_all
-    "done."
+    haml :summary
   end
 
 
