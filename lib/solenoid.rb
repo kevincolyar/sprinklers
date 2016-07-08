@@ -2,16 +2,17 @@ require File.dirname(__FILE__) + '/serial_port_control'
 
 class Solenoid
 
-  def initialize(pin)
-    @pin = pin
+  def initialize(args={})
+    @pin = args.fetch(:pin)
+    @port = args.fetch(:port)
   end
 
   def on
-    SerialPortControl.instance.write(@pin.to_i.chr)
+    @port.write(@pin.to_i.chr)
   end
 
   def off
-    SerialPortControl.instance.write((@pin.to_i+10).chr)
+    @port.write((@pin.to_i+10).chr)
   end
 
 end

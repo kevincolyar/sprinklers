@@ -1,0 +1,13 @@
+<div class="btn-group-vertical" role="group">
+  <% @sprinkler_system.stations.each do |station| %>
+    <% if station.on? %>
+      <a class="btn btn-default" href="/sprinkler/<%= station.name %>/off">
+        Stations <%= station.name %> - On
+      </a>
+    <% else %>
+      <a class="btn btn-default" href="/sprinkler/<%= station.name %>/on">
+        Stations <%= station.name %> - Off
+      </a>
+    <% end %>
+  <% end %>
+</div>

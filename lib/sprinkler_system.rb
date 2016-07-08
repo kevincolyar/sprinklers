@@ -10,8 +10,8 @@ class SprinklerSystem
     @stations.values().sort
   end
 
-  def add_station(n)
-    @stations[n] = Station.new(n)
+  def add_station(n, serial_port)
+    @stations[n] = Station.new(n, serial_port)
   end
 
   def enable(n)

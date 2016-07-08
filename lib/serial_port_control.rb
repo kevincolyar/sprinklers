@@ -1,14 +1,14 @@
-require 'singleton'
 require 'serialport'
 
 class SerialPortControl
-  include Singleton
-
-  def initialize
-    @serial_port = SerialPort.new("/dev/tty.usbserial-A7006RMY", 9600, 8, 1, 0)
-  end
-
-  def connect
+  def initialize(args={})
+    @serial_port = SerialPort.new(
+      args.fetch(:file),
+      args.fetch(:baud_rate, 9600),
+      args.fetch(:data_bits, 8),
+      args.fetch(:stop_bits, 1),
+      args.fetch(:parity, 0)
+      )
   end
 
   def write(s)
@@ -18,5 +18,4 @@ class SerialPortControl
   def close
     @serial_port.close()
   end
-
 end

@@ -2,9 +2,9 @@ require File.dirname(__FILE__) + '/solenoid'
 
 class Station
 
-  def initialize(name)
+  def initialize(name, port)
     @name = name
-    @solenoid = Solenoid.new(name.to_i+1)
+    @solenoid = Solenoid.new(pin: name.to_i+1, port: port)
     @state = :off
   end
 
