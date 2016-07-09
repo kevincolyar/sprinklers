@@ -1,7 +1,4 @@
 class FakeSerialPort
-  def initialize(args={})
-  end
-
   def write(s)
     puts "Writing: #{s}"
   end

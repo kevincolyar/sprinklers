@@ -17,4 +17,18 @@ bundle install
 ruby sprinklers_app.rb
 ```
 
+## Schedules
+
+Show schedules
+
+    whenever
+    
+Update crontab
+
+    whenever --update-crontab
+    
+View crontab
+
+    whenever -l
+
 ## Adruino App

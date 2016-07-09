@@ -1,13 +1,13 @@
-<div class="btn-group-vertical" role="group">
-  <% @sprinkler_system.stations.each do |station| %>
-    <% if station.on? %>
-      <a class="btn btn-default" href="/sprinkler/<%= station.name %>/off">
-        Stations <%= station.name %> - On
-      </a>
-    <% else %>
-      <a class="btn btn-default" href="/sprinkler/<%= station.name %>/on">
-        Stations <%= station.name %> - Off
-      </a>
-    <% end %>
+<div class="btn-group-vertical btn-block" role="group">
+  <% @stations.each do |station| %>
+    <a class="btn btn-lg <%= station[:on] ? 'btn-success' : 'btn-info' %>" href="/sprinkler/<%= station[:valve] %>/<%= station[:on] ? 'off' : 'on'%>">
+      <%= station[:valve] %> - <%= station[:name] %> - <%= station[:on] ? 'On' : 'Off' %>
+    </a>
   <% end %>
+</div>
+
+<div class="btn-group-vertical btn-block" role="group">
+  <a class="btn btn-lg btn-danger" href="/sprinklers/off">
+    All Stations Off
+  </a>
 </div>
