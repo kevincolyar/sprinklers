@@ -12,6 +12,7 @@ void setup()
   pinMode(7, OUTPUT);
   pinMode(8, OUTPUT);
   pinMode(9, OUTPUT);
+  Serial.print("Ready");
 }
 
 void loop()
@@ -19,7 +20,9 @@ void loop()
   if (Serial.available() > 0) {
     // get incoming byte:
     incomingByte = Serial.read();
-    
+   
+    Serial.print(incomingByte);
+   
     if(incomingByte > 10)
       digitalWrite(incomingByte-10, LOW);
     

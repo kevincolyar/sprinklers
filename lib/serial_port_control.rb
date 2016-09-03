@@ -12,7 +12,8 @@ class SerialPortControl
   end
 
   def write(s)
-    @serial_port.write(s)
+    puts "Writing: #{s.to_i}"
+    @serial_port.write(s.chr)
   end
 
   def close

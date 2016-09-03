@@ -12,6 +12,9 @@ end
 
 def sprinklers_update(stations, serial)
   stations.each do |station|
-    serial.write((station[:valve].to_i + (station[:on] ? 0 : 10) ).chr)
+    puts station[:valve].to_i
+    val = station[:valve].to_i + (station[:on] ? 0 : 10)
+    puts val
+    serial.write(val)
   end
 end

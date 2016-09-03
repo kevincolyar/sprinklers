@@ -13,8 +13,8 @@ class SprinklersApp < Sinatra::Base
   def initialize
     super
 
-    # @serial = SerialPortControl.new(configatron.serial)
-    @serial = FakeSerialPort.new
+    @serial = SerialPortControl.new(configatron.serial)
+    # @serial = FakeSerialPort.new
     @stations = configatron.stations
   end
 
@@ -30,6 +30,7 @@ class SprinklersApp < Sinatra::Base
 
   get '/sprinkler/:sprinkler/on' do
     @stations = sprinklers_enable(@stations, params[:sprinkler])
+    puts @stations
     sprinklers_update(@stations, @serial)
     erb :summary
   end
